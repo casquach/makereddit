@@ -38,4 +38,13 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// Database setup
+const mongoose = require('mongoose');
+const mongoURI = 'mongodb://ms-user:BW7jGdZ8qHDCcin@ds235768.mlab.com:35768/makereddit';
+
+mongoose.connect(mongoURI)
+mongoose.Promise = global.Promise;
+let db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
 module.exports = app;
